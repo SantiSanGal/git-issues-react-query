@@ -1,5 +1,19 @@
+import {useQuery} from "@tanstack/react-query";
+
+const getLabels = async() => {
+    const res = await fetch('https://api.github.com/repos/facebook/react/labels');
+    const data = await res.json();
+    console.log('data', data);
+    return  data;
+}
 
 export const LabelPicker = () => {
+    //el primer arreglo es el manejador de caché
+    const labelsQuery = useQuery(
+        ['labels'],
+            getLabels,
+        );
+
   return (
     <div>
         <span 

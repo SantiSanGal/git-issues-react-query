@@ -1,9 +1,9 @@
 import {useQuery} from "@tanstack/react-query";
+import {gitHubApi} from "../../api/gitHubApi";
+import { Label } from "../interfaces/labels";
 
-const getLabels = async() => {
-    const res = await fetch('https://api.github.com/repos/facebook/react/labels');
-    const data = await res.json();
-    console.log('data', data);
+const getLabels = async():Promise<Label[]> => {
+    const { data } = await gitHubApi.get<Label[]>('/labels');
     return  data;
 }
 
@@ -12,6 +12,10 @@ export const LabelPicker = () => {
     const labelsQuery = useQuery(
         ['labels'],
             getLabels,
+        {
+            // con esto, evito que se realice de nuevo la peticion al dar click en la pantalla
+            refetchOnWindowFocus: false,
+        }
         );
 
   return (

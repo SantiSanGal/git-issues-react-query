@@ -23,7 +23,7 @@ export const useLabels = () => {
             refetchOnWindowFocus: false,
             // por 1 hora, se mantiene "fresca" la información, luego pasa a stale
             // stale = estado de información no confiable, que puede ser desactualizada
-            staleTime: 1000 * 60 * 60 
+            staleTime: 1000 * 60 * 60 //cada 1 hora se cargará nueva información o al cargar por primera vez
         }
     );
 

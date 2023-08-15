@@ -1,3 +1,4 @@
+import LoadingIcon from "../../shared/components/LoadingIcon";
 import { useLabels } from "../hooks/useLabels"
 
 export const LabelPicker = () => {
@@ -7,7 +8,7 @@ export const LabelPicker = () => {
     // isLoading es cuando se carga la data por primera vez
     //cuando no hay data ni en caché
     if ( labelsQuery.isLoading ){
-        return <h1>Loading...</h1>
+        return <LoadingIcon/>
     }
     //isFetching se dispara siempre que se realiza la petición
 

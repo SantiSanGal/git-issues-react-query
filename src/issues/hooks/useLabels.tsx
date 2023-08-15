@@ -21,6 +21,9 @@ export const useLabels = () => {
         {
             // con esto, evito que se realice de nuevo la peticion al dar click en la pantalla
             refetchOnWindowFocus: false,
+            // por 1 hora, se mantiene "fresca" la información, luego pasa a stale
+            // stale = estado de información no confiable, que puede ser desactualizada
+            staleTime: 1000 * 60 * 60 
         }
     );
 

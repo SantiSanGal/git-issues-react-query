@@ -8,7 +8,11 @@ const getLabels = async():Promise<Label[]> => {
 
     await sleep(2);
 
-    const { data } = await gitHubApi.get<Label[]>('/labels');
+    const { data } = await gitHubApi.get<Label[]>('/labels', {
+        headers: {
+            Authorization: null
+        }
+    });
     console.log(data);
     
     return  data;

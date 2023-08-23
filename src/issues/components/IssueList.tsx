@@ -3,7 +3,7 @@ import { IssueItem } from './IssueItem';
 import { FC } from "react";
 
 interface Props {
-    issues: Issue
+    issues: Issue[];
 }
 
 export const IssueList: FC<Props> = ({ issues }) => {
@@ -24,8 +24,8 @@ export const IssueList: FC<Props> = ({ issues }) => {
             </div>
             <div className="card-body text-dark">
                 {
-                    [issues].map( issue => (
-                        <IssueItem key={ issue.id } />
+                    issues.map(issue => (
+                        <IssueItem key={issue.id} issue={issue}/>
                     ))
                 
                 }                

@@ -14,7 +14,7 @@ export const IssueView = () => {
   const {id='0'} = useParams();
   
   //los parámetros de url siempre vienen como string, entonces parseamos a int
-  const query = useIssue( +id );
+  const { issueQuery } = useIssue( +id );
 
   return (
     <div className="row mb-5">
@@ -23,11 +23,11 @@ export const IssueView = () => {
       </div>
 
       {/* Primer comentario */}
-      <IssueComment body={ comment1 } />
+      <IssueComment issue={ issue } />
 
       {/* Comentario de otros */}
-      <IssueComment body={ comment2 } />
-      <IssueComment body={ comment3 } />
+      {/* <IssueComment body={ comment2 } />
+      <IssueComment body={ comment3 } /> */}
     </div>
   )
 }

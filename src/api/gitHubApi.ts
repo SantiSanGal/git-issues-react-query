@@ -3,6 +3,6 @@ import axios from 'axios';
 export const gitHubApi = axios.create({
     baseURL: 'https://api.github.com/repos/facebook/react',
     headers: {
-        Authorization: 'Bearer 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'
+        Authorization: 'Bearer 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'
     }
 });

@@ -3,24 +3,27 @@ import { gitHubApi } from "../../api/gitHubApi";
 import { Issue } from "../interfaces";
 import { sleep } from "../../helpers/sleep";
 
-const getIssueInfo = async (issueNumber: number):Promise<Issue> => {
+export const getIssueInfo = async (issueNumber: number):Promise<Issue> => {
     await sleep(2);
     const { data } = await gitHubApi.get(`/issues/${issueNumber}`)
+    console.log(data);
+    
     return data    
 }
 
-const getIssueComments = async (issueNumber: number):Promise<Issue[]> => {
+export const getIssueComments = async (issueNumber: number):Promise<Issue[]> => {
   await sleep(2);
   const { data } = await gitHubApi.get(`/issues/${issueNumber}/comments`)
   return data;
 }
 
+// commentsQuery depende de issueQuery mediante el enable
 export const useIssue = (issueNumber: number) => {
     //cacheamos el id que pasamos
     const issueQuery = useQuery(
     //para cada tipo de dato es un caché diferente
-    [ 'issue', issueNumber ], //se carda el id del issue en caché
-    () => getIssueInfo(issueNumber),
+    [ 'issue', issueNumber ], //se carga el id del issue en caché
+    () => getIssueInfo(issueNumber)
     );
 
     const commentsQuery = useQuery(

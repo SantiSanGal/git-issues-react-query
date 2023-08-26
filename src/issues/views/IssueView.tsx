@@ -10,7 +10,7 @@ export const IssueView = () => {
   const {id = '0'} = useParams();
   
   //los parámetros de url siempre vienen como string, entonces parseamos a int
-  const { issueQuery } = useIssue( +id );
+  const { issueQuery, commentsQuery } = useIssue( +id );
 
   //si está cargado, muestra este icono
   if ( issueQuery.isLoading )
@@ -26,12 +26,16 @@ export const IssueView = () => {
         <Link to='./issues/list'>Go Back</Link>
       </div>
 
-      {/* Primer comentario */}
       <IssueComment issue={ issueQuery.data } />
-
-      {/* Comentario de otros */}
-      {/* <IssueComment body={ comment2 } />
-      <IssueComment body={ comment3 } /> */}
+      {
+        //muestra loading mientras se cargan los otros comentarios
+        commentsQuery.isLoading && (<LoadingIcon/>) 
+      }
+      {
+        commentsQuery.data?.map( issue => (
+          <IssueComment key={issue.id} issue={ issue } />
+        ))
+      }
     </div>
   )
 }

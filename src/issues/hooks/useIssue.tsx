@@ -19,6 +19,6 @@ export const useIssue = (issueNumber: number) => {
     () => getIssueInfo(issueNumber),
     );
     return {
-
+      issueQuery
   }
 }
